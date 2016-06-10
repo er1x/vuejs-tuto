@@ -30,7 +30,7 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/2.0.0/superagent.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.2/vue-resource.min.js"></script>
   <script>
     new Vue({
       el: '#app',
@@ -39,10 +39,9 @@
       },
 
       created: function () {
-        superagent.get('https://swapi.co/api/films/')
-                  .end(function (err, response) {
-                    console.log(response)
-                    this.films = response.body.results.map(function (film) {
+        this.$http.get('https://swapi.co/api/films/')
+                  .then(function (response) {
+                    this.films = response.data.results.map(function (film) {
                       return {
                         id: film.episode_id,
                         title: film.title,
