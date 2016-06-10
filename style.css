@@ -1,0 +1,10 @@
+#app {
+  margin-top: 4em;
+}
+.film {
+  text-align: center;
+}
+
+.film.seen {
+  text-decoration: line-through;
+}

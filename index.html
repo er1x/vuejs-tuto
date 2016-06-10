@@ -2,12 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Intro a VueJS</title>
+  <title>Star Wars Movies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/superhero/bootstrap.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <h1 class="text-center">Pelis de Star Wars</h1>
+
   <div id="app">
-    <h1>{{ greeting }}</h1>
-    <input type="text" v-model="greeting">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <ul class="list-group">
+          <li v-for="film in films | orderBy 'id'"
+              class="list-group-item film"
+              v-bind:class="{'seen' : film.seen}"
+          >
+              <button class="btn btn-primary btn-xs pull-left"
+                      v-on:click="toggleSeen(film)"
+                      >
+                      Toggle
+              </button>
+              <span>{{* film.name }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
@@ -15,7 +34,21 @@
     new Vue({
       el: '#app',
       data: {
-        greeting: 'Hola Vue!'
+        films: [
+          {id: 4, name: 'The Phantom Menace', seen: false, likes: 0},
+          {id: 5, name: 'Attack of the Clones', seen: false, likes: 0},
+          {id: 6, name: 'Revenge of the Sith', seen: false, likes: 0},
+          {id: 1, name: 'A New Hope', seen: true, likes: 0},
+          {id: 2, name: 'The Empire Strikes Back', seen: true, likes: 0},
+          {id: 3, name: 'Return of the Jedi', seen: true, likes: 0},
+          {id: 7, name: 'The Force Awakens', seen: false, likes: 0}
+        ]
+      },
+
+      methods: {
+        toggleSeen: function (film) {
+          film.seen = !film.seen
+        }
       }
     })
   </script>
