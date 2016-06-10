@@ -22,7 +22,7 @@
                       >
                       Toggle
               </button>
-              <span>{{* film.name }}</span>
+              <span>{{* film.title }}</span>
           </li>
         </ul>
       </div>
@@ -30,19 +30,26 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/superagent/2.0.0/superagent.min.js"></script>
   <script>
     new Vue({
       el: '#app',
       data: {
-        films: [
-          {id: 4, name: 'The Phantom Menace', seen: false, likes: 0},
-          {id: 5, name: 'Attack of the Clones', seen: false, likes: 0},
-          {id: 6, name: 'Revenge of the Sith', seen: false, likes: 0},
-          {id: 1, name: 'A New Hope', seen: true, likes: 0},
-          {id: 2, name: 'The Empire Strikes Back', seen: true, likes: 0},
-          {id: 3, name: 'Return of the Jedi', seen: true, likes: 0},
-          {id: 7, name: 'The Force Awakens', seen: false, likes: 0}
-        ]
+        films: []
+      },
+
+      created: function () {
+        superagent.get('https://swapi.co/api/films/')
+                  .end(function (err, response) {
+                    console.log(response)
+                    this.films = response.body.results.map(function (film) {
+                      return {
+                        id: film.episode_id,
+                        title: film.title,
+                        seen: false
+                      }
+                    })
+                  }.bind(this))
       },
 
       methods: {
