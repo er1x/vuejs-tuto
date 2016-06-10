@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Intro a VueJS</title>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ greeting }}</h1>
+    <input type="text" v-model="greeting">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        greeting: 'Hola Vue!'
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "vuejs-mini-curso",
+  "version": "0.1.0",
+  "description": "Un curso express de VueJS",
+  "scripts": {
+    "server": "live-server ."
+  },
+  "author": "Emilio J. Grande <emilio@jsjutsu.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.0.0"
+  }
+}
