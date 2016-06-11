@@ -8,3 +8,17 @@
 .film.seen {
   text-decoration: line-through;
 }
+
+.panel-body {
+  position: relative;
+}
+
+.seen::before {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+}

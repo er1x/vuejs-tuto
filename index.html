@@ -9,35 +9,62 @@
 <body>
   <h1 class="text-center">Pelis de Star Wars</h1>
 
-  <div id="app">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <ul class="list-group">
-          <li v-for="film in films | orderBy 'id'"
-              class="list-group-item film"
-              v-bind:class="{'seen' : film.seen}"
+  <div class="container">
+    <div id="app">
+      <div class="row">
+        <div class="col-md-4" v-for="film in films">
+          <film-card v-bind:title="film.title"
+                     v-bind:id="film.id"
+                     v-bind:opening="film.opening"
+                     v-bind:seen="film.seen"
           >
-              <button class="btn btn-primary btn-xs pull-left"
-                      v-on:click="toggleSeen(film)"
-                      >
-                      Toggle
-              </button>
-              <span>{{* film.title }}</span>
-          </li>
-        </ul>
+          </film-card>
+        </div>
       </div>
     </div>
   </div>
 
+  <template id="filmCard">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{* title }}</h3>
+      </div>
+      <div class="panel-body" :class="{'seen': seen}">
+        {{* opening }}
+      </div>
+      <button class="btn btn-block"
+              :class="{'btn-danger': seen, 'btn-success': !seen}"
+              @click="toggleSeen"
+      >
+        {{ seenText }}
+      </button>
+    </div>
+  </template>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.2/vue-resource.min.js"></script>
   <script>
+
+    Vue.component('film-card', {
+      template: '#filmCard',
+      props: ['title', 'opening', 'seen'],
+      methods: {
+        toggleSeen: function () {
+          this.seen = !this.seen
+        }
+      },
+      computed: {
+        seenText: function () {
+          return this.seen ? 'Ya la he visto' : '¡Quiero verla!'
+        }
+      }
+    })
+
     new Vue({
       el: '#app',
       data: {
         films: []
       },
-
       created: function () {
         this.$http.get('https://swapi.co/api/films/')
                   .then(function (response) {
@@ -45,16 +72,11 @@
                       return {
                         id: film.episode_id,
                         title: film.title,
+                        opening: film.opening_crawl,
                         seen: false
                       }
                     })
                   }.bind(this))
-      },
-
-      methods: {
-        toggleSeen: function (film) {
-          film.seen = !film.seen
-        }
       }
     })
   </script>
