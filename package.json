@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "description": "Un curso express de VueJS",
   "scripts": {
-    "server": "live-server ."
+    "server": "live-server .",
+    "bundle": "browserify scripts/main.js -o bundle.js"
   },
   "author": "Emilio J. Grande <emilio@jsjutsu.com>",
   "license": "MIT",
   "devDependencies": {
+    "browserify": "^13.0.1",
     "live-server": "^1.0.0"
   }
 }

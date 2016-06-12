@@ -43,42 +43,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.2/vue-resource.min.js"></script>
-  <script>
-
-    Vue.component('film-card', {
-      template: '#filmCard',
-      props: ['title', 'opening', 'seen'],
-      methods: {
-        toggleSeen: function () {
-          this.seen = !this.seen
-        }
-      },
-      computed: {
-        seenText: function () {
-          return this.seen ? 'Ya la he visto' : '¡Quiero verla!'
-        }
-      }
-    })
-
-    new Vue({
-      el: '#app',
-      data: {
-        films: []
-      },
-      created: function () {
-        this.$http.get('https://swapi.co/api/films/')
-                  .then(function (response) {
-                    this.films = response.data.results.map(function (film) {
-                      return {
-                        id: film.episode_id,
-                        title: film.title,
-                        opening: film.opening_crawl,
-                        seen: false
-                      }
-                    })
-                  }.bind(this))
-      }
-    })
-  </script>
+  <script src="bundle.js"></script>
 </body>
 </html>
