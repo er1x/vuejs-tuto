@@ -24,23 +24,6 @@
     </div>
   </div>
 
-  <template id="filmCard">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">{{* title }}</h3>
-      </div>
-      <div class="panel-body" :class="{'seen': seen}">
-        {{* opening }}
-      </div>
-      <button class="btn btn-block"
-              :class="{'btn-danger': seen, 'btn-success': !seen}"
-              @click="toggleSeen"
-      >
-        {{ seenText }}
-      </button>
-    </div>
-  </template>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.2/vue-resource.min.js"></script>
   <script src="bundle.js"></script>

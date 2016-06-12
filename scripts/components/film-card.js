@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = Vue.component('film-card', {
-  template: '#filmCard',
+  template: require('../../templates/film-card.html'),
   props: ['title', 'opening', 'seen'],
   methods: {
     toggleSeen: function () {
