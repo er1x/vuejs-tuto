@@ -12,7 +12,7 @@
   <div class="container">
     <div id="app">
       <div class="row">
-        <div class="col-md-4" v-for="film in films">
+        <div class="col-md-4" v-for="film in films | orderBy 'id'">
           <film-card v-bind:title="film.title"
                      v-bind:id="film.id"
                      v-bind:opening="film.opening"
@@ -23,9 +23,6 @@
       </div>
     </div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.24/vue.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.2/vue-resource.min.js"></script>
   <script src="bundle.js"></script>
 </body>
 </html>

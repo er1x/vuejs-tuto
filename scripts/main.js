@@ -1,11 +1,17 @@
 'use strict'
 
-require('./components/film-card')
+var Vue = require('vue')
+Vue.use(require('vue-resource'))
+
+var FilmCard = require('./components/film-card.vue')
 
 new Vue({
   el: '#app',
   data: {
     films: []
+  },
+  components: {
+    'film-card': FilmCard
   },
   created: function () {
     this.$http.get('https://swapi.co/api/films/')
