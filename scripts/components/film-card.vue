@@ -37,7 +37,7 @@
       {{ seenText }}
     </button>
   </div>
-</template>C
+</template>
 
 <script>
   export default {
